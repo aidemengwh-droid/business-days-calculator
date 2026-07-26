@@ -1,0 +1,7 @@
+# Cloudflare Pages URL rewrites - serve .html files with clean URLs
+/3-business-days-from-today /3-business-days-from-today.html 200
+/5-business-days-from-today /5-business-days-from-today.html 200
+/10-business-days-from-today /10-business-days-from-today.html 200
+/30-business-days-from-today /30-business-days-from-today.html 200
+/us-business-days /us-business-days.html 200
+/uk-business-days /uk-business-days.html 200

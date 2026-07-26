@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Business Days From Today - Two Working Weeks</title>
+  <meta name="description" content="What date is 10 business days from today? Automatically calculated, excluding weekends and US public holidays. Ten working days equals two full work weeks.">
+  <link rel="canonical" href="https://businessdayscalc.com/10-business-days-from-today">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="10 Business Days From Today - Two Working Weeks">
+  <meta property="og:description" content="What date is 10 business days from today? Automatically calculated, excluding weekends and US public holidays. Ten working days equals two full work weeks.">
+  <meta property="og:url" content="https://businessdayscalc.com/10-business-days-from-today">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="10 Business Days From Today - Two Working Weeks">
+  <meta name="twitter:description" content="What date is 10 business days from today? Automatically calculated, excluding weekends and US public holidays.">
+  <link rel="alternate" hreflang="en" href="https://businessdayscalc.com/10-business-days-from-today">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://businessdayscalc.com/10-business-days-from-today",
+    "description": "What date is 10 business days from today? Automatically calculated, excluding weekends and US public holidays.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="index.html">Calculator</a>
+        <a href="us-business-days.html">US holidays</a>
+        <a href="uk-business-days.html">UK holidays</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>What Date Is 10 Business Days From Today?</h1>
+    <p class="lead">Today is <strong id="today-str"></strong>. Ten business days from today falls on:</p>
+
+    <div class="hero-result">
+      <div class="big-date" id="big-date"></div>
+      <div class="sub" id="sub-line"></div>
+      <div class="extra" id="extra-line"></div>
+    </div>
+
+    <h2>What does "10 business days" mean?</h2>
+    <p>Ten business days equals <strong>two full work weeks</strong>. Like the 5-day case, the day of the week stays the same &mdash; a Monday lands two Mondays later. The calendar span is normally 14 days, but any public holiday in the window pushes it forward by one day each.</p>
+    <p>Because two weeks is long enough to cross a holiday in many months (especially around Thanksgiving, Christmas, or New Year), the actual result can easily land 15 or 16 calendar days out.</p>
+
+    <h2>When is "10 business days" used?</h2>
+    <ul class="clean">
+      <li><strong>Contract terms:</strong> many service agreements specify a 10-business-day performance or response window.</li>
+      <li><strong>Legal notices:</strong> statutory notice periods for certain filings and objections run in business days.</li>
+      <li><strong>Project milestones:</strong> two-week sprints and deliverables are often quoted as 10 business days.</li>
+      <li><strong>Returns &amp; refunds:</strong> some retailers give 10 business days to process a return.</li>
+    </ul>
+
+    <h2>How to count 10 business days manually</h2>
+    <p>Start from the day after your start date. Mark each Monday&ndash;Friday that is not a holiday. Stop when you have marked ten days. The tenth marked day is your result. This calculator does that for you automatically, using the current US federal holiday calendar.</p>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="index.html">Full calculator</a>
+      <a href="5-business-days-from-today.html">5 business days from today</a>
+      <a href="30-business-days-from-today.html">30 business days from today</a>
+      <a href="us-business-days.html">US business days</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>10 business days from today &mdash; excludes weekends and US public holidays.
+      <a href="index.html">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var DAYS = 10;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var res = BizDays.addBusinessDays(today, DAYS, "us");
+      document.getElementById("today-str").textContent = BizDays.formatDate(today);
+      document.getElementById("big-date").textContent = BizDays.formatDate(res.resultDate);
+      document.getElementById("sub-line").textContent =
+        DAYS + " business days = " + res.calendarDays + " calendar days from today";
+      var extra = "Based on US federal holidays. ";
+      if (res.skippedHolidays.length) {
+        extra += "Skipped: " + res.skippedHolidays.map(function (h) {
+          return h.name;
+        }).join(", ") + ".";
+      } else {
+        extra += "No holidays were skipped in this period.";
+      }
+      document.getElementById("extra-line").textContent = extra;
+    })();
+  </script>
+</body>
+</html>

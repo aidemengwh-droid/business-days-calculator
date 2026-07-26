@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Business Days From Today - Date Calculator</title>
+  <meta name="description" content="What date is 5 business days from today? Automatically calculated, excluding weekends and US public holidays. Five working days equals one full work week.">
+  <link rel="canonical" href="https://businessdayscalc.com/5-business-days-from-today">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="5 Business Days From Today - Date Calculator">
+  <meta property="og:description" content="What date is 5 business days from today? Automatically calculated, excluding weekends and US public holidays. Five working days equals one full work week.">
+  <meta property="og:url" content="https://businessdayscalc.com/5-business-days-from-today">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="5 Business Days From Today - Date Calculator">
+  <meta name="twitter:description" content="What date is 5 business days from today? Automatically calculated, excluding weekends and US public holidays.">
+  <link rel="alternate" hreflang="en" href="https://businessdayscalc.com/5-business-days-from-today">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://businessdayscalc.com/5-business-days-from-today",
+    "description": "What date is 5 business days from today? Automatically calculated, excluding weekends and US public holidays.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="index.html">Calculator</a>
+        <a href="us-business-days.html">US holidays</a>
+        <a href="uk-business-days.html">UK holidays</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>What Date Is 5 Business Days From Today?</h1>
+    <p class="lead">Today is <strong id="today-str"></strong>. Five business days from today falls on:</p>
+
+    <div class="hero-result">
+      <div class="big-date" id="big-date"></div>
+      <div class="sub" id="sub-line"></div>
+      <div class="extra" id="extra-line"></div>
+    </div>
+
+    <h2>What does "5 business days" mean?</h2>
+    <p>Five business days equals <strong>one full work week</strong> (Monday through Friday). Because it is a complete week, the day of the week stays the same &mdash; a Monday lands on the next Monday, a Tuesday on the next Tuesday, and so on.</p>
+    <p>The result only shifts if a public holiday falls within that week. Each holiday pushes the result forward by one calendar day, turning a 7-calendar-day span into 8 or 9 days.</p>
+
+    <h2>When is "5 business days" used?</h2>
+    <ul class="clean">
+      <li><strong>Standard processing:</strong> applications, permits, and administrative reviews often quote a 5-business-day turnaround.</li>
+      <li><strong>Shipping:</strong> free or standard shipping tiers frequently promise delivery within 5 business days.</li>
+      <li><strong>Payment terms:</strong> Net 5 invoicing means payment is due 5 business days after the invoice date.</li>
+      <li><strong>Notices:</strong> many employment and contract notices require a 5-day warning period.</li>
+    </ul>
+
+    <h2>5 business days vs 5 calendar days</h2>
+    <p>Five <em>calendar</em> days is exactly 5 days from today, including the weekend. Five <em>business</em> days always spans at least 7 calendar days (one full week) and can stretch to 9 or 10 days if a weekend and holiday both fall in the window. Always check which one a deadline refers to.</p>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="index.html">Full calculator</a>
+      <a href="3-business-days-from-today.html">3 business days from today</a>
+      <a href="10-business-days-from-today.html">10 business days from today</a>
+      <a href="us-business-days.html">US business days</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>5 business days from today &mdash; excludes weekends and US public holidays.
+      <a href="index.html">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var DAYS = 5;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var res = BizDays.addBusinessDays(today, DAYS, "us");
+      document.getElementById("today-str").textContent = BizDays.formatDate(today);
+      document.getElementById("big-date").textContent = BizDays.formatDate(res.resultDate);
+      document.getElementById("sub-line").textContent =
+        DAYS + " business days = " + res.calendarDays + " calendar days from today";
+      var extra = "Based on US federal holidays. ";
+      if (res.skippedHolidays.length) {
+        extra += "Skipped: " + res.skippedHolidays.map(function (h) {
+          return h.name;
+        }).join(", ") + ".";
+      } else {
+        extra += "No holidays were skipped in this period.";
+      }
+      document.getElementById("extra-line").textContent = extra;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 Business Days From Today - What Date Is It?</title>
+  <meta name="description" content="What date is 3 business days from today? Automatically calculated, excluding weekends and US public holidays. See the exact date and day of the week.">
+  <link rel="canonical" href="https://businessdayscalc.com/3-business-days-from-today">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="3 Business Days From Today - What Date Is It?">
+  <meta property="og:description" content="What date is 3 business days from today? Automatically calculated, excluding weekends and US public holidays.">
+  <meta property="og:url" content="https://businessdayscalc.com/3-business-days-from-today">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="3 Business Days From Today - What Date Is It?">
+  <meta name="twitter:description" content="What date is 3 business days from today? Automatically calculated, excluding weekends and US public holidays.">
+  <link rel="alternate" hreflang="en" href="https://businessdayscalc.com/3-business-days-from-today">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://businessdayscalc.com/3-business-days-from-today",
+    "description": "What date is 3 business days from today? Automatically calculated, excluding weekends and US public holidays.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="index.html">Calculator</a>
+        <a href="us-business-days.html">US holidays</a>
+        <a href="uk-business-days.html">UK holidays</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>What Date Is 3 Business Days From Today?</h1>
+    <p class="lead">Today is <strong id="today-str"></strong>. Three business days from today falls on:</p>
+
+    <div class="hero-result">
+      <div class="big-date" id="big-date"></div>
+      <div class="sub" id="sub-line"></div>
+      <div class="extra" id="extra-line"></div>
+    </div>
+
+    <h2>What does "3 business days" mean?</h2>
+    <p>Three business days means three working days, skipping Saturdays, Sundays, and public holidays. It is just under one standard work week. The exact calendar date depends on which day of the week you start counting:</p>
+    <ul class="clean">
+      <li>From <strong>Monday</strong> &rarr; Thursday (same week)</li>
+      <li>From <strong>Tuesday</strong> &rarr; Friday (same week)</li>
+      <li>From <strong>Wednesday</strong> &rarr; Monday (skips the weekend)</li>
+      <li>From <strong>Thursday</strong> &rarr; Tuesday (skips the weekend)</li>
+      <li>From <strong>Friday</strong> &rarr; Wednesday (skips the weekend)</li>
+    </ul>
+    <p>If a public holiday falls within those three days, the result shifts forward by one day for each holiday encountered.</p>
+
+    <h2>When is "3 business days" used?</h2>
+    <ul class="clean">
+      <li><strong>Shipping:</strong> many retailers promise 3-business-day delivery on expedited orders.</li>
+      <li><strong>Banking:</strong> some transfers and clearances quote a 3-business-day settlement window.</li>
+      <li><strong>Short notice periods:</strong> meeting notices, cancellation windows, and response deadlines.</li>
+      <li><strong>Approvals:</strong> internal review and sign-off cycles often run on a 3-day SLA.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="index.html">Full calculator</a>
+      <a href="5-business-days-from-today.html">5 business days from today</a>
+      <a href="10-business-days-from-today.html">10 business days from today</a>
+      <a href="us-business-days.html">US business days</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>3 business days from today &mdash; excludes weekends and US public holidays.
+      <a href="index.html">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var DAYS = 3;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var res = BizDays.addBusinessDays(today, DAYS, "us");
+      document.getElementById("today-str").textContent = BizDays.formatDate(today);
+      document.getElementById("big-date").textContent = BizDays.formatDate(res.resultDate);
+      document.getElementById("sub-line").textContent =
+        DAYS + " business days = " + res.calendarDays + " calendar days from today";
+      var extra = "Based on US federal holidays. ";
+      if (res.skippedHolidays.length) {
+        extra += "Skipped: " + res.skippedHolidays.map(function (h) {
+          return h.name;
+        }).join(", ") + ".";
+      } else {
+        extra += "No holidays were skipped in this period.";
+      }
+      document.getElementById("extra-line").textContent = extra;
+    })();
+  </script>
+</body>
+</html>

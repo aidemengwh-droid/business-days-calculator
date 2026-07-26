@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>30 Business Days From Today - Six Working Weeks</title>
+  <meta name="description" content="What date is 30 business days from today? Automatically calculated, excluding weekends and US public holidays. Thirty working days equals roughly six work weeks.">
+  <link rel="canonical" href="https://businessdayscalc.com/30-business-days-from-today">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="30 Business Days From Today - Six Working Weeks">
+  <meta property="og:description" content="What date is 30 business days from today? Automatically calculated, excluding weekends and US public holidays. Thirty working days equals roughly six work weeks.">
+  <meta property="og:url" content="https://businessdayscalc.com/30-business-days-from-today">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="30 Business Days From Today - Six Working Weeks">
+  <meta name="twitter:description" content="What date is 30 business days from today? Automatically calculated, excluding weekends and US public holidays.">
+  <link rel="alternate" hreflang="en" href="https://businessdayscalc.com/30-business-days-from-today">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://businessdayscalc.com/30-business-days-from-today",
+    "description": "What date is 30 business days from today? Automatically calculated, excluding weekends and US public holidays.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="index.html">Calculator</a>
+        <a href="us-business-days.html">US holidays</a>
+        <a href="uk-business-days.html">UK holidays</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>What Date Is 30 Business Days From Today?</h1>
+    <p class="lead">Today is <strong id="today-str"></strong>. Thirty business days from today falls on:</p>
+
+    <div class="hero-result">
+      <div class="big-date" id="big-date"></div>
+      <div class="sub" id="sub-line"></div>
+      <div class="extra" id="extra-line"></div>
+    </div>
+
+    <h2>What does "30 business days" mean?</h2>
+    <p>Thirty business days equals roughly <strong>six full work weeks</strong>. In pure calendar terms that is about 42 days (six weeks), but because a six-week span almost always crosses at least one public holiday, the real result is usually 43&ndash;45 calendar days from today &mdash; around a month and a half.</p>
+    <p>30 business days is the longest common business-day deadline. It is distinct from "30 calendar days" (exactly one month), which does not skip weekends or holidays.</p>
+
+    <h2>When is "30 business days" used?</h2>
+    <ul class="clean">
+      <li><strong>Net 30 invoicing:</strong> the most common payment term &mdash; though note "Net 30" usually means 30 <em>calendar</em> days. Always confirm which applies.</li>
+      <li><strong>Probation periods:</strong> some employment and trial periods run 30 business days.</li>
+      <li><strong>Statutory deadlines:</strong> certain regulatory filings and appeal windows use 30-business-day limits.</li>
+      <li><strong>Project phases:</strong> six-week development or review cycles map to 30 business days.</li>
+    </ul>
+
+    <h2>30 business days vs 30 calendar days</h2>
+    <p>This is a frequent source of confusion. <strong>30 calendar days</strong> is exactly one month from today, including every weekend and holiday. <strong>30 business days</strong> skips all weekends and holidays, landing roughly 42&ndash;45 calendar days out. If a contract says "Net 30" without specifying, it almost always means calendar days &mdash; but check the fine print, because some industries default to business days.</p>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="index.html">Full calculator</a>
+      <a href="10-business-days-from-today.html">10 business days from today</a>
+      <a href="5-business-days-from-today.html">5 business days from today</a>
+      <a href="us-business-days.html">US business days</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>30 business days from today &mdash; excludes weekends and US public holidays.
+      <a href="index.html">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var DAYS = 30;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var res = BizDays.addBusinessDays(today, DAYS, "us");
+      document.getElementById("today-str").textContent = BizDays.formatDate(today);
+      document.getElementById("big-date").textContent = BizDays.formatDate(res.resultDate);
+      document.getElementById("sub-line").textContent =
+        DAYS + " business days = " + res.calendarDays + " calendar days from today";
+      var extra = "Based on US federal holidays. ";
+      if (res.skippedHolidays.length) {
+        extra += "Skipped: " + res.skippedHolidays.map(function (h) {
+          return h.name;
+        }).join(", ") + ".";
+      } else {
+        extra += "No holidays were skipped in this period.";
+      }
+      document.getElementById("extra-line").textContent = extra;
+    })();
+  </script>
+</body>
+</html>

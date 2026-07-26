@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Business Days Calculator - 2026 Bank Holidays</title>
+  <meta name="description" content="Calculate UK business days excluding weekends and bank holidays. Full list of 2026 UK bank holidays with dates. Add working days to any date.">
+  <link rel="canonical" href="https://businessdayscalc.com/uk-business-days">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="UK Business Days Calculator - 2026 Bank Holidays">
+  <meta property="og:description" content="Calculate UK business days excluding weekends and bank holidays. Full list of 2026 UK bank holidays with dates. Add working days to any date.">
+  <meta property="og:url" content="https://businessdayscalc.com/uk-business-days">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="UK Business Days Calculator - 2026 Bank Holidays">
+  <meta name="twitter:description" content="Calculate UK business days excluding weekends and bank holidays. Full list of 2026 UK bank holidays with dates.">
+  <link rel="alternate" hreflang="en" href="https://businessdayscalc.com/uk-business-days">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://businessdayscalc.com/uk-business-days",
+    "description": "Calculate UK business days excluding weekends and bank holidays. Full list of 2026 UK bank holidays with dates.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": "Add working days to any date, exclude weekends and UK bank holidays, view full bank holiday calendar"
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="index.html">Calculator</a>
+        <a href="us-business-days.html">US holidays</a>
+        <a href="uk-business-days.html">UK holidays</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>UK Business Days Calculator</h1>
+    <p class="lead">Add working days to any date, excluding weekends and UK bank holidays (England &amp; Wales).</p>
+
+    <div class="calc-card">
+      <form class="calc-form" id="calc-form" onsubmit="return false;">
+        <div class="field">
+          <label for="start-date">Start date</label>
+          <input type="date" id="start-date">
+        </div>
+        <div class="field">
+          <label for="days">Business days</label>
+          <input type="number" id="days" value="5" min="0" max="365">
+        </div>
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country">
+            <option value="us">United States</option>
+            <option value="uk" selected>United Kingdom</option>
+          </select>
+        </div>
+        <button class="btn" id="calc-btn" type="submit">Calculate</button>
+      </form>
+      <div class="result" id="result" style="display:none;">
+        <div class="result-date" id="result-date"></div>
+        <div class="result-meta" id="result-meta"></div>
+        <ul class="skipped-list" id="skipped-list"></ul>
+      </div>
+    </div>
+
+    <h2>UK bank holidays <span id="holiday-year"></span></h2>
+    <p>Bank holidays are public holidays in the UK where banks and many businesses close. The list below covers England and Wales. Scotland and Northern Ireland have a few additional dates.</p>
+    <table class="holiday-table">
+      <thead>
+        <tr><th>Holiday</th><th>Date</th><th>Day of week</th></tr>
+      </thead>
+      <tbody id="holiday-tbody"></tbody>
+    </table>
+    <p class="note">When a bank holiday falls on a weekend, a substitute day is usually given on the following Monday. This calculator uses the official holiday date.</p>
+
+    <h2>How many business days are in a UK year?</h2>
+    <p>A typical UK year has <strong>253&ndash;255 business days</strong> (52 weeks &times; 5 days, minus 8 bank holidays). The exact count varies with how holidays land on weekends and whether substitute days apply.</p>
+
+    <h2>UK vs US business days</h2>
+    <p>The two countries share the Monday&ndash;Friday workweek but differ on holidays. The US has 11 federal holidays; the UK (England &amp; Wales) has 8 bank holidays. The UK also has two Easter-based holidays (Good Friday and Easter Monday) whose dates change every year, plus three "floating" Monday bank holidays. If you work across both markets, use the country selector above to switch calendars.</p>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="index.html">Full calculator</a>
+      <a href="3-business-days-from-today.html">3 business days from today</a>
+      <a href="5-business-days-from-today.html">5 business days from today</a>
+      <a href="10-business-days-from-today.html">10 business days from today</a>
+      <a href="30-business-days-from-today.html">30 business days from today</a>
+      <a href="us-business-days.html">US business days</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>UK business days calculator &mdash; excludes weekends and bank holidays.
+      <a href="index.html">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var year = today.getFullYear();
+      document.getElementById("start-date").value = BizDays.toISODate(today);
+      document.getElementById("holiday-year").textContent = "(" + year + ")";
+
+      var holidays = BizDays.getUKHolidays(year);
+      var tbody = document.getElementById("holiday-tbody");
+      holidays.forEach(function (h) {
+        var tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + h.name + "</td><td>" + BizDays.formatDate(h.date) +
+          "</td><td>" + BizDays.WEEKDAYS[h.date.getDay()] + "</td>";
+        tbody.appendChild(tr);
+      });
+
+      function run() {
+        var dateStr = document.getElementById("start-date").value;
+        var days = parseInt(document.getElementById("days").value, 10) || 0;
+        var country = document.getElementById("country").value;
+        var start = new Date(dateStr + "T00:00:00");
+        var res = BizDays.addBusinessDays(start, days, country);
+        var box = document.getElementById("result");
+        box.style.display = "block";
+        document.getElementById("result-date").textContent = BizDays.formatDate(res.resultDate);
+        var meta = days + " business day" + (days === 1 ? "" : "s") +
+          " from " + BizDays.formatDate(start) + " = " + res.calendarDays +
+          " calendar day" + (res.calendarDays === 1 ? "" : "s");
+        document.getElementById("result-meta").textContent = meta;
+        var list = document.getElementById("skipped-list");
+        list.innerHTML = "";
+        if (res.skippedHolidays.length) {
+          var head = document.createElement("li");
+          head.textContent = "Holidays skipped:";
+          head.style.fontWeight = "600";
+          list.appendChild(head);
+          res.skippedHolidays.forEach(function (h) {
+            var li = document.createElement("li");
+            li.textContent = h.name + " (" + BizDays.formatDateShort(h.date) + ")";
+            list.appendChild(li);
+          });
+        }
+      }
+      document.getElementById("calc-btn").addEventListener("click", run);
+      document.getElementById("calc-form").addEventListener("submit", function (e) {
+        e.preventDefault(); run();
+      });
+      run();
+    })();
+  </script>
+</body>
+</html>
