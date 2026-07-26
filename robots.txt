@@ -3,4 +3,4 @@ Allow: /
 
 # Crawl-delay: 1
 
-Sitemap: https://businessdayscalc.com/sitemap.xml
+Sitemap: https://bussicalc.com/sitemap.xml
