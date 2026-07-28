@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21 Business Days From Today - Three Weeks Ahead</title>
+  <meta name="description" content="What date is 21 business days from today? Three full work weeks. Excludes weekends and US holidays for an accurate business calendar date.">
+  <link rel="canonical" href="https://bussicalc.com/21-business-days-from-today">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="21 Business Days From Today - Three Weeks Ahead">
+  <meta property="og:description" content="What date is 21 business days from today? Three full work weeks. Excludes weekends and US holidays for an accurate business calendar date.">
+  <meta property="og:url" content="https://bussicalc.com/21-business-days-from-today">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="21 Business Days From Today - Three Weeks Ahead">
+  <meta name="twitter:description" content="What date is 21 business days from today? Three full work weeks. Excludes weekends and US holidays for an accurate business calendar date.">
+  <link rel="alternate" hreflang="en" href="https://bussicalc.com/21-business-days-from-today">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://bussicalc.com/21-business-days-from-today",
+    "description": "What date is 21 business days from today? Three full work weeks. Excludes weekends and US holidays for an accurate business calendar date.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BBZEN3LC3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1BBZEN3LC3');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="/">Calculator</a>
+        <a href="/us-business-days">US</a>
+        <a href="/uk-business-days">UK</a>
+        <a href="/ca-business-days">Canada</a>
+        <a href="/au-business-days">Australia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>What Date Is 21 Business Days From Today?</h1>
+    <p class="lead">Today is <strong id="today-str"></strong>. 21 business days from today falls on:</p>
+
+    <div class="hero-result">
+      <div class="big-date" id="big-date"></div>
+      <div class="sub" id="sub-line"></div>
+      <div class="extra" id="extra-line"></div>
+    </div>
+
+    <h2>What does "21 business days" mean?</h2>
+    <p>Twenty-one business days equals three full work weeks. In calendar terms, this is roughly one calendar month (28-31 days depending on holiday placement).</p>
+    <ul class="clean">
+      <li>From <strong>Monday</strong> &rarr; the Monday four weeks out (28 calendar days)</li>
+      <li>From <strong>Tuesday</strong> &rarr; the Tuesday four weeks out (28 calendar days)</li>
+      <li>From <strong>Wednesday</strong> &rarr; the Wednesday four weeks out (28 calendar days)</li>
+      <li>From <strong>Thursday</strong> &rarr; the Thursday four weeks out (28 calendar days)</li>
+      <li>From <strong>Friday</strong> &rarr; the Friday four weeks out (28 calendar days)</li>
+    </ul>
+    <p>If a US federal holiday falls within that window, the result shifts forward by one day for each holiday encountered.</p>
+
+    <h2>When is "21 business days" used?</h2>
+    <ul class="clean">
+      <li><strong>Mortgage processing:</strong> initial underwriting turnaround.</li>
+      <li><strong>Custom manufacturing:</strong> made-to-order product lead times.</li>
+      <li><strong>Permit applications:</strong> building and zoning permit review cycles.</li>
+      <li><strong>PTO approval:</strong> advance notice for extended leave requests.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="/">Full calculator</a>
+      <a href="/3-business-days-from-today">3 business days from today</a>
+      <a href="/5-business-days-from-today">5 business days from today</a>
+      <a href="/7-business-days-from-today">7 business days from today</a>
+      <a href="/10-business-days-from-today">10 business days from today</a>
+      <a href="/14-business-days-from-today">14 business days from today</a>
+      <a href="/30-business-days-from-today">30 business days from today</a>
+      <a href="/60-business-days-from-today">60 business days from today</a>
+      <a href="/business-days-between-dates">Between two dates</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>21 business days from today - three work weeks ahead, excluding weekends and US public holidays.
+      <a href="/">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var DAYS = 21;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var res = BizDays.addBusinessDays(today, DAYS, "us");
+      document.getElementById("today-str").textContent = BizDays.formatDate(today);
+      document.getElementById("big-date").textContent = BizDays.formatDate(res.resultDate);
+      document.getElementById("sub-line").textContent =
+        DAYS + " business days = " + res.calendarDays + " calendar days from today";
+      var extra = "Based on US federal holidays. ";
+      if (res.skippedHolidays.length) {
+        extra += "Skipped: " + res.skippedHolidays.map(function (h) {
+          return h.name;
+        }).join(", ") + ".";
+      } else {
+        extra += "No holidays were skipped in this period.";
+      }
+      document.getElementById("extra-line").textContent = extra;
+    })();
+  </script>
+</body>
+</html>

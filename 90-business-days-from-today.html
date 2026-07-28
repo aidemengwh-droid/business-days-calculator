@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>90 Business Days From Today - What Date Is It?</title>
+  <meta name="description" content="What date is 90 business days from today? Roughly 4-5 calendar months. Automatically calculated excluding weekends and US holidays.">
+  <link rel="canonical" href="https://bussicalc.com/90-business-days-from-today">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="90 Business Days From Today - What Date Is It?">
+  <meta property="og:description" content="What date is 90 business days from today? Roughly 4-5 calendar months. Automatically calculated excluding weekends and US holidays.">
+  <meta property="og:url" content="https://bussicalc.com/90-business-days-from-today">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="90 Business Days From Today - What Date Is It?">
+  <meta name="twitter:description" content="What date is 90 business days from today? Roughly 4-5 calendar months. Automatically calculated excluding weekends and US holidays.">
+  <link rel="alternate" hreflang="en" href="https://bussicalc.com/90-business-days-from-today">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://bussicalc.com/90-business-days-from-today",
+    "description": "What date is 90 business days from today? Roughly 4-5 calendar months. Automatically calculated excluding weekends and US holidays.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BBZEN3LC3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1BBZEN3LC3');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="/">Calculator</a>
+        <a href="/us-business-days">US</a>
+        <a href="/uk-business-days">UK</a>
+        <a href="/ca-business-days">Canada</a>
+        <a href="/au-business-days">Australia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>What Date Is 90 Business Days From Today?</h1>
+    <p class="lead">Today is <strong id="today-str"></strong>. 90 business days from today falls on:</p>
+
+    <div class="hero-result">
+      <div class="big-date" id="big-date"></div>
+      <div class="sub" id="sub-line"></div>
+      <div class="extra" id="extra-line"></div>
+    </div>
+
+    <h2>What does "90 business days" mean?</h2>
+    <p>Ninety business days is roughly 4-5 calendar months (about 18 work weeks). This is a key milestone for long-range planning, contract expirations, and regulatory deadlines.</p>
+    <ul class="clean">
+      <li>From <strong>Monday</strong> &rarr; approximately 4-5 calendar months ahead</li>
+      <li>From <strong>Any weekday</strong> &rarr; varies by 3-7 days depending on holiday density in the period</li>
+    </ul>
+    <p>If a US federal holiday falls within that window, the result shifts forward by one day for each holiday encountered.</p>
+
+    <h2>When is "90 business days" used?</h2>
+    <ul class="clean">
+      <li><strong>Contract termination:</strong> many service agreements require 90 business days notice.</li>
+      <li><strong>Regulatory reviews:</strong> FDA, EPA, and other agency review windows.</li>
+      <li><strong>Large-scale projects:</strong> Phase 1 delivery milestones.</li>
+      <li><strong>Relocation planning:</strong> international move coordination timelines.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="/">Full calculator</a>
+      <a href="/3-business-days-from-today">3 business days from today</a>
+      <a href="/5-business-days-from-today">5 business days from today</a>
+      <a href="/7-business-days-from-today">7 business days from today</a>
+      <a href="/10-business-days-from-today">10 business days from today</a>
+      <a href="/14-business-days-from-today">14 business days from today</a>
+      <a href="/21-business-days-from-today">21 business days from today</a>
+      <a href="/30-business-days-from-today">30 business days from today</a>
+      <a href="/business-days-between-dates">Between two dates</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>90 business days from today - approximately four months, excluding weekends and US public holidays.
+      <a href="/">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var DAYS = 90;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var res = BizDays.addBusinessDays(today, DAYS, "us");
+      document.getElementById("today-str").textContent = BizDays.formatDate(today);
+      document.getElementById("big-date").textContent = BizDays.formatDate(res.resultDate);
+      document.getElementById("sub-line").textContent =
+        DAYS + " business days = " + res.calendarDays + " calendar days from today";
+      var extra = "Based on US federal holidays. ";
+      if (res.skippedHolidays.length) {
+        extra += "Skipped: " + res.skippedHolidays.map(function (h) {
+          return h.name;
+        }).join(", ") + ".";
+      } else {
+        extra += "No holidays were skipped in this period.";
+      }
+      document.getElementById("extra-line").textContent = extra;
+    })();
+  </script>
+</body>
+</html>

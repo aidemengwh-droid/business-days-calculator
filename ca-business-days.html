@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Days Calculator - Add Working Days to Any Date</title>
-  <meta name="description" content="Free business days calculator. Add or subtract working days from any date, excluding weekends and public holidays. Supports US federal and UK bank holidays.">
-  <link rel="canonical" href="https://bussicalc.com/">
+  <title>Canadian Business Days Calculator - 2026 Statutory Holidays</title>
+  <meta name="description" content="Calculate Canadian business days excluding weekends and statutory holidays. Full list of 2026 Canada public holidays with dates. Add working days to any date.">
+  <link rel="canonical" href="https://bussicalc.com/ca-business-days">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Business Days Calculator">
-  <meta property="og:title" content="Business Days Calculator - Add Working Days to Any Date">
-  <meta property="og:description" content="Free business days calculator. Add or subtract working days from any date, excluding weekends and public holidays. Supports US federal and UK bank holidays.">
-  <meta property="og:url" content="https://bussicalc.com/">
+  <meta property="og:title" content="Canadian Business Days Calculator - 2026 Statutory Holidays">
+  <meta property="og:description" content="Calculate Canadian business days excluding weekends and statutory holidays. Full list of 2026 Canada public holidays with dates. Add working days to any date.">
+  <meta property="og:url" content="https://bussicalc.com/ca-business-days">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Business Days Calculator - Add Working Days to Any Date">
-  <meta name="twitter:description" content="Free business days calculator. Add or subtract working days from any date, excluding weekends and public holidays.">
-  <link rel="alternate" hreflang="en" href="https://bussicalc.com/">
+  <meta name="twitter:title" content="Canadian Business Days Calculator - 2026 Statutory Holidays">
+  <meta name="twitter:description" content="Calculate Canadian business days excluding weekends and statutory holidays. Full list of 2026 Canada public holidays with dates. Add working days to any date.">
+  <link rel="alternate" hreflang="en" href="https://bussicalc.com/ca-business-days">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Business Days Calculator",
-    "url": "https://bussicalc.com/",
-    "description": "Free business days calculator. Add or subtract working days from any date, excluding weekends and public holidays.",
+    "url": "https://bussicalc.com/ca-business-days",
+    "description": "Calculate Canadian business days excluding weekends and statutory holidays. Full list of 2026 Canada public holidays with dates. Add working days to any date.",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "featureList": "Add working days to any date, exclude weekends and US/UK public holidays, calculate shipping and contract deadlines"
+    "featureList": "Add working days to any date, exclude weekends and Canada public holidays, view full holiday calendar"
   }
   </script>
   <link rel="stylesheet" href="assets/style.css">
@@ -45,8 +45,8 @@
       <a href="/" class="logo">Business<span>Days</span>.Calc</a>
       <nav class="nav">
         <a href="/">Calculator</a>
-        <a href="/us-business-days">US holidays</a>
-        <a href="/uk-business-days">UK holidays</a>
+        <a href="/us-business-days">US</a>
+        <a href="/uk-business-days">UK</a>
         <a href="/ca-business-days">Canada</a>
         <a href="/au-business-days">Australia</a>
       </nav>
@@ -54,8 +54,8 @@
   </header>
 
   <main class="container">
-    <h1>Business Days Calculator</h1>
-    <p class="lead">Add or subtract working days from any date. Weekends and public holidays are skipped automatically.</p>
+    <h1>Canada Business Days Calculator</h1>
+    <p class="lead">Add working days to any date, excluding weekends and Canadian statutory holidays.</p>
 
     <div class="calc-card">
       <form class="calc-form" id="calc-form" onsubmit="return false;">
@@ -72,13 +72,12 @@
           <select id="country">
             <option value="us">United States</option>
             <option value="uk">United Kingdom</option>
-            <option value="ca">Canada</option>
+            <option value="ca" selected>Canada</option>
             <option value="au">Australia</option>
           </select>
         </div>
         <button class="btn" id="calc-btn" type="submit">Calculate</button>
       </form>
-
       <div class="result" id="result" style="display:none;">
         <div class="result-date" id="result-date"></div>
         <div class="result-meta" id="result-meta"></div>
@@ -86,21 +85,21 @@
       </div>
     </div>
 
-    <h2>How business days are counted</h2>
-    <p>A <strong>business day</strong> (also called a working day) is any day from Monday to Friday that is not a public holiday. Saturday and Sunday are always excluded, along with country-specific holidays such as Independence Day in the US or Spring Bank Holiday in the UK.</p>
-    <p>This calculator counts forward from your start date. The start date itself is not counted &mdash; counting begins on the next calendar day. For example, if today is Monday and you add <strong>3 business days</strong>, the result is Thursday. If you add 3 business days on a Thursday, the result is the following Tuesday (skipping the weekend).</p>
+    <h2>Canada public holidays <span id="holiday-year"></span></h2>
+    <p>These are the statutory public holidays across Canada. Most banks, government offices, and many businesses close on these days, so they are not counted as business days.</p>
+    <table class="holiday-table">
+      <thead>
+        <tr><th>Holiday</th><th>Date</th><th>Day of week</th></tr>
+      </thead>
+      <tbody id="holiday-tbody"></tbody>
+    </table>
 
-    <h2>Common use cases</h2>
-    <ul class="clean">
-      <li><strong>Shipping &amp; delivery:</strong> estimate when a package arrives if it takes 3&ndash;5 business days in transit.</li>
-      <li><strong>Contracts &amp; deadlines:</strong> figure out the exact due date when a contract says "within 10 business days".</li>
-      <li><strong>Payroll &amp; billing cycles:</strong> map out pay periods, invoice terms (Net 30), and settlement dates.</li>
-      <li><strong>Project planning:</strong> convert sprint lengths and lead times from business days to calendar dates.</li>
-    </ul>
+    <h2>How many business days are in a Canada year?</h2>
+    <p>A typical Canadian year has 250-253 business days (52 weeks x 5 days, minus 11 statutory holidays). Provincial holidays vary, so exact counts differ by province.</p>
 
-    <h2>Quick calculators</h2>
-    <p>Jump straight to a pre-set calculation, automatically updated for today:</p>
+    <h2>Related calculators</h2>
     <div class="related">
+      <a href="/">Full calculator</a>
       <a href="/3-business-days-from-today">3 business days from today</a>
       <a href="/5-business-days-from-today">5 business days from today</a>
       <a href="/10-business-days-from-today">10 business days from today</a>
@@ -111,46 +110,47 @@
   </main>
 
   <footer class="site-footer">
-    <p>Business Days Calculator &mdash; excludes weekends and public holidays.
-      <a href="/us-business-days">US holidays</a>
-      <a href="/uk-business-days">UK holidays</a>
-        <a href="/ca-business-days">Canada</a>
-        <a href="/au-business-days">Australia</a>
+    <p>Canadian business days calculator - excludes weekends and statutory holidays.
+      <a href="/">Calculator</a>
     </p>
   </footer>
 
   <script>
     (function () {
-      var today = new Date();
-      today.setHours(0, 0, 0, 0);
+      var countryCode = "ca";
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var year = today.getFullYear();
       document.getElementById("start-date").value = BizDays.toISODate(today);
+      document.getElementById("holiday-year").textContent = "(" + year + ")";
+
+      var holidays = BizDays.getHolidays(countryCode, year);
+      var tbody = document.getElementById("holiday-tbody");
+      holidays.forEach(function (h) {
+        var tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + h.name + "</td><td>" + BizDays.formatDate(h.date) +
+          "</td><td>" + BizDays.WEEKDAYS[h.date.getDay()] + "</td>";
+        tbody.appendChild(tr);
+      });
 
       function run() {
         var dateStr = document.getElementById("start-date").value;
         var days = parseInt(document.getElementById("days").value, 10) || 0;
         var country = document.getElementById("country").value;
         var start = new Date(dateStr + "T00:00:00");
-
         var res = BizDays.addBusinessDays(start, days, country);
         var box = document.getElementById("result");
         box.style.display = "block";
-
-        document.getElementById("result-date").textContent =
-          BizDays.formatDate(res.resultDate);
-
+        document.getElementById("result-date").textContent = BizDays.formatDate(res.resultDate);
         var meta = days + " business day" + (days === 1 ? "" : "s") +
-          " from " + BizDays.formatDate(start) +
-          " = " + res.calendarDays + " calendar day" +
-          (res.calendarDays === 1 ? "" : "s");
+          " from " + BizDays.formatDate(start) + " = " + res.calendarDays +
+          " calendar day" + (res.calendarDays === 1 ? "" : "s");
         document.getElementById("result-meta").textContent = meta;
-
         var list = document.getElementById("skipped-list");
         list.innerHTML = "";
         if (res.skippedHolidays.length) {
           var head = document.createElement("li");
           head.textContent = "Holidays skipped:";
           head.style.fontWeight = "600";
-          head.style.color = "var(--text)";
           list.appendChild(head);
           res.skippedHolidays.forEach(function (h) {
             var li = document.createElement("li");
@@ -159,11 +159,9 @@
           });
         }
       }
-
       document.getElementById("calc-btn").addEventListener("click", run);
       document.getElementById("calc-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        run();
+        e.preventDefault(); run();
       });
       run();
     })();

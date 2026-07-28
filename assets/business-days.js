@@ -90,8 +90,43 @@ function getUKHolidays(year) {
   ];
 }
 
+function getCAHolidays(year) {
+  const easter = easterSunday(year);
+  return [
+    { date: new Date(year, 0, 1),            name: "New Year's Day" },
+    { date: nthWeekday(year, 1, 1, 3),       name: "Family Day" },
+    { date: addDays(easter, -2),             name: "Good Friday" },
+    { date: nthWeekday(year, 4, 1, -1),      name: "Victoria Day" },
+    { date: new Date(year, 6, 1),            name: "Canada Day" },
+    { date: nthWeekday(year, 7, 1, 1),       name: "Civic Holiday" },
+    { date: nthWeekday(year, 8, 1, 1),       name: "Labour Day" },
+    { date: nthWeekday(year, 9, 1, 2),       name: "Thanksgiving" },
+    { date: new Date(year, 10, 11),          name: "Remembrance Day" },
+    { date: new Date(year, 11, 25),          name: "Christmas Day" },
+    { date: new Date(year, 11, 26),          name: "Boxing Day" }
+  ];
+}
+
+function getAUHolidays(year) {
+  const easter = easterSunday(year);
+  return [
+    { date: new Date(year, 0, 1),            name: "New Year's Day" },
+    { date: new Date(year, 0, 26),           name: "Australia Day" },
+    { date: addDays(easter, -2),             name: "Good Friday" },
+    { date: addDays(easter, 1),              name: "Easter Monday" },
+    { date: new Date(year, 3, 25),           name: "ANZAC Day" },
+    { date: nthWeekday(year, 5, 1, 2),       name: "King's Birthday" },
+    { date: nthWeekday(year, 9, 1, 1),       name: "Labour Day" },
+    { date: new Date(year, 11, 25),          name: "Christmas Day" },
+    { date: new Date(year, 11, 26),          name: "Boxing Day" }
+  ];
+}
+
 function getHolidays(country, year) {
-  return country === "uk" ? getUKHolidays(year) : getUSHolidays(year);
+  if (country === "uk") return getUKHolidays(year);
+  if (country === "ca") return getCAHolidays(year);
+  if (country === "au") return getAUHolidays(year);
+  return getUSHolidays(year);
 }
 
 function findHoliday(date, country) {
@@ -212,6 +247,8 @@ if (typeof window !== "undefined") {
     getHolidays: getHolidays,
     getUSHolidays: getUSHolidays,
     getUKHolidays: getUKHolidays,
+    getCAHolidays: getCAHolidays,
+    getAUHolidays: getAUHolidays,
     formatDate: formatDate,
     formatDateShort: formatDateShort,
     todayString: todayString,

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Count Business Days - Working Days in Any Period</title>
+  <meta name="description" content="Count how many business days are in a month, quarter, or year. Excludes weekends and public holidays. Free calculator for US, UK, Canada, Australia.">
+  <link rel="canonical" href="https://bussicalc.com/count-business-days">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="Count Business Days - Working Days in Any Period">
+  <meta property="og:description" content="Count how many business days are in a month, quarter, or year. Excludes weekends and public holidays.">
+  <meta property="og:url" content="https://bussicalc.com/count-business-days">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Count Business Days - Working Days in Any Period">
+  <meta name="twitter:description" content="Count business days in any period. Excludes weekends and holidays.">
+  <link rel="alternate" hreflang="en" href="https://bussicalc.com/count-business-days">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://bussicalc.com/count-business-days",
+    "description": "Count how many business days are in a month, quarter, or year. Useful for payroll, project planning, and billing.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BBZEN3LC3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1BBZEN3LC3');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="/">Calculator</a>
+        <a href="/us-business-days">US</a>
+        <a href="/uk-business-days">UK</a>
+        <a href="/ca-business-days">Canada</a>
+        <a href="/au-business-days">Australia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Count Business Days in Any Period</h1>
+    <p class="lead">How many working days are in a specific month, quarter, or custom date range?</p>
+
+    <div class="calc-card">
+      <form class="calc-form" id="calc-form" onsubmit="return false;">
+        <div class="field">
+          <label for="period">Period</label>
+          <select id="period">
+            <option value="this-month" selected>This month</option>
+            <option value="next-month">Next month</option>
+            <option value="this-quarter">This quarter</option>
+            <option value="this-year">This year</option>
+            <option value="custom">Custom range</option>
+          </select>
+        </div>
+        <div id="custom-range" style="display:none;">
+          <div class="field">
+            <label for="start-date">Start date</label>
+            <input type="date" id="start-date">
+          </div>
+          <div class="field">
+            <label for="end-date">End date</label>
+            <input type="date" id="end-date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country">
+            <option value="us" selected>United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
+          </select>
+        </div>
+        <button class="btn" id="calc-btn" type="submit">Count</button>
+      </form>
+      <div class="result" id="result" style="display:none;">
+        <div class="result-date" id="result-date"></div>
+        <div class="result-meta" id="result-meta"></div>
+      </div>
+    </div>
+
+    <h2>Typical business day counts (US, 2026)</h2>
+    <table class="holiday-table">
+      <thead>
+        <tr><th>Period</th><th>Business days</th><th>Weekend days</th><th>Holidays</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>January</td><td>21</td><td>10</td><td>1 (New Year's Day)</td></tr>
+        <tr><td>February</td><td>19</td><td>8</td><td>1 (Presidents' Day)</td></tr>
+        <tr><td>March</td><td>22</td><td>9</td><td>0</td></tr>
+        <tr><td>Q1 total</td><td>62</td><td>27</td><td>2</td></tr>
+        <tr><td>Full year</td><td>~261</td><td>104</td><td>11</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Common use cases for counting business days</h2>
+    <ul class="clean">
+      <li><strong>Payroll:</strong> determine how many working days are in a pay period.</li>
+      <li><strong>Project estimation:</strong> how many working days are available for a sprint or phase.</li>
+      <li><strong>Billing:</strong> calculate daily-rate billing for a contract period.</li>
+      <li><strong>Leave planning:</strong> how many working days will you be away?</li>
+      <li><strong>Compliance:</strong> verify statutory notice periods and filing deadlines.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="/">Add business days</a>
+      <a href="/business-days-between-dates">Between two dates</a>
+      <a href="/shipping-calculator">Shipping calculator</a>
+      <a href="/3-business-days-from-today">3 business days from today</a>
+      <a href="/5-business-days-from-today">5 business days from today</a>
+      <a href="/10-business-days-from-today">10 business days from today</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Count business days &mdash; working days in any period, excluding weekends and holidays.
+      <a href="/">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+
+      function getMonthRange(year, month) {
+        return { start: new Date(year, month, 0), end: new Date(year, month + 1, 0) };
+      }
+
+      function getQuarterRange(year, quarter) {
+        var startMonth = (quarter - 1) * 3;
+        return { start: new Date(year, startMonth, 0), end: new Date(year, startMonth + 3, 0) };
+      }
+
+      document.getElementById("period").addEventListener("change", function() {
+        document.getElementById("custom-range").style.display = this.value === "custom" ? "block" : "none";
+      });
+
+      function run() {
+        var period = document.getElementById("period").value;
+        var country = document.getElementById("country").value;
+        var y = today.getFullYear();
+        var m = today.getMonth();
+        var range;
+
+        if (period === "this-month") range = getMonthRange(y, m);
+        else if (period === "next-month") range = getMonthRange(y, m + 1);
+        else if (period === "this-quarter") range = getQuarterRange(y, Math.floor(m / 3) + 1);
+        else if (period === "this-year") range = { start: new Date(y, 0, 0), end: new Date(y, 11, 31) };
+        else {
+          range = {
+            start: new Date(document.getElementById("start-date").value + "T00:00:00"),
+            end: new Date(document.getElementById("end-date").value + "T00:00:00")
+          };
+        }
+
+        if (range.end <= range.start) {
+          document.getElementById("result").style.display = "block";
+          document.getElementById("result-date").textContent = "0 business days";
+          document.getElementById("result-meta").textContent = "End date must be after start date.";
+          return;
+        }
+
+        var count = BizDays.businessDaysBetween(range.start, range.end, country);
+        var calendar = Math.round((range.end - range.start) / 86400000);
+        var countryNames = { us: "US", uk: "UK", ca: "Canada", au: "Australia" };
+        document.getElementById("result").style.display = "block";
+        document.getElementById("result-date").textContent = count + " business day" + (count === 1 ? "" : "s");
+        document.getElementById("result-meta").textContent =
+          "From " + BizDays.formatDateShort(range.start) + " to " + BizDays.formatDateShort(range.end) +
+          " (" + calendar + " calendar days) using " + countryNames[country] + " holidays.";
+      }
+
+      document.getElementById("calc-btn").addEventListener("click", run);
+      document.getElementById("calc-form").addEventListener("submit", function (e) {
+        e.preventDefault(); run();
+      });
+      run();
+    })();
+  </script>
+</body>
+</html>

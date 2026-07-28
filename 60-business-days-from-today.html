@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>60 Business Days From Today - Three Months Ahead</title>
+  <meta name="description" content="What date is 60 business days from today? Roughly three calendar months. Automatically calculated excluding weekends and US federal holidays.">
+  <link rel="canonical" href="https://bussicalc.com/60-business-days-from-today">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="60 Business Days From Today - Three Months Ahead">
+  <meta property="og:description" content="What date is 60 business days from today? Roughly three calendar months. Automatically calculated excluding weekends and US federal holidays.">
+  <meta property="og:url" content="https://bussicalc.com/60-business-days-from-today">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="60 Business Days From Today - Three Months Ahead">
+  <meta name="twitter:description" content="What date is 60 business days from today? Roughly three calendar months. Automatically calculated excluding weekends and US federal holidays.">
+  <link rel="alternate" hreflang="en" href="https://bussicalc.com/60-business-days-from-today">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://bussicalc.com/60-business-days-from-today",
+    "description": "What date is 60 business days from today? Roughly three calendar months. Automatically calculated excluding weekends and US federal holidays.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BBZEN3LC3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1BBZEN3LC3');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="/">Calculator</a>
+        <a href="/us-business-days">US</a>
+        <a href="/uk-business-days">UK</a>
+        <a href="/ca-business-days">Canada</a>
+        <a href="/au-business-days">Australia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>What Date Is 60 Business Days From Today?</h1>
+    <p class="lead">Today is <strong id="today-str"></strong>. 60 business days from today falls on:</p>
+
+    <div class="hero-result">
+      <div class="big-date" id="big-date"></div>
+      <div class="sub" id="sub-line"></div>
+      <div class="extra" id="extra-line"></div>
+    </div>
+
+    <h2>What does "60 business days" mean?</h2>
+    <p>Sixty business days is approximately three calendar months (about 12 work weeks). This is a common milestone for long-term project planning, contract durations, and extended processing timelines.</p>
+    <ul class="clean">
+      <li>From <strong>Monday</strong> &rarr; approximately three calendar months ahead</li>
+      <li>From <strong>Any weekday</strong> &rarr; varies by 2-5 days depending on holidays in the period</li>
+    </ul>
+    <p>If a US federal holiday falls within that window, the result shifts forward by one day for each holiday encountered.</p>
+
+    <h2>When is "60 business days" used?</h2>
+    <ul class="clean">
+      <li><strong>Probation periods:</strong> many employment contracts set 60-business-day review milestones.</li>
+      <li><strong>Large purchase delivery:</strong> furniture, custom vehicles, and specialty equipment.</li>
+      <li><strong>Immigration processing:</strong> preliminary review windows for certain visa categories.</li>
+      <li><strong>Construction permits:</strong> major renovation and new-build approval timelines.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="/">Full calculator</a>
+      <a href="/3-business-days-from-today">3 business days from today</a>
+      <a href="/5-business-days-from-today">5 business days from today</a>
+      <a href="/7-business-days-from-today">7 business days from today</a>
+      <a href="/10-business-days-from-today">10 business days from today</a>
+      <a href="/14-business-days-from-today">14 business days from today</a>
+      <a href="/21-business-days-from-today">21 business days from today</a>
+      <a href="/30-business-days-from-today">30 business days from today</a>
+      <a href="/business-days-between-dates">Between two dates</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>60 business days from today - approximately three months, excluding weekends and US public holidays.
+      <a href="/">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var DAYS = 60;
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var res = BizDays.addBusinessDays(today, DAYS, "us");
+      document.getElementById("today-str").textContent = BizDays.formatDate(today);
+      document.getElementById("big-date").textContent = BizDays.formatDate(res.resultDate);
+      document.getElementById("sub-line").textContent =
+        DAYS + " business days = " + res.calendarDays + " calendar days from today";
+      var extra = "Based on US federal holidays. ";
+      if (res.skippedHolidays.length) {
+        extra += "Skipped: " + res.skippedHolidays.map(function (h) {
+          return h.name;
+        }).join(", ") + ".";
+      } else {
+        extra += "No holidays were skipped in this period.";
+      }
+      document.getElementById("extra-line").textContent = extra;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Days Between Two Dates - Free Calculator</title>
+  <meta name="description" content="Calculate how many business days are between two dates. Excludes weekends and public holidays. Count working days in any date range for US, UK, Canada, Australia.">
+  <link rel="canonical" href="https://bussicalc.com/business-days-between-dates">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Business Days Calculator">
+  <meta property="og:title" content="Business Days Between Two Dates - Free Calculator">
+  <meta property="og:description" content="Calculate how many business days are between two dates. Excludes weekends and public holidays for US, UK, Canada, Australia.">
+  <meta property="og:url" content="https://bussicalc.com/business-days-between-dates">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Business Days Between Two Dates - Free Calculator">
+  <meta name="twitter:description" content="Count working days between any two dates. Excludes weekends and holidays.">
+  <link rel="alternate" hreflang="en" href="https://bussicalc.com/business-days-between-dates">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Business Days Calculator",
+    "url": "https://bussicalc.com/business-days-between-dates",
+    "description": "Calculate how many business days are between two dates. Excludes weekends and public holidays.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": "Count working days between any two dates, exclude weekends and holidays, support US UK Canada Australia"
+  }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/business-days.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BBZEN3LC3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1BBZEN3LC3');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="logo">Business<span>Days</span>.Calc</a>
+      <nav class="nav">
+        <a href="/">Calculator</a>
+        <a href="/us-business-days">US</a>
+        <a href="/uk-business-days">UK</a>
+        <a href="/ca-business-days">Canada</a>
+        <a href="/au-business-days">Australia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Business Days Between Two Dates</h1>
+    <p class="lead">How many working days fall between any two dates? Excludes weekends and public holidays.</p>
+
+    <div class="calc-card">
+      <form class="calc-form" id="calc-form" onsubmit="return false;">
+        <div class="field">
+          <label for="start-date">Start date</label>
+          <input type="date" id="start-date">
+        </div>
+        <div class="field">
+          <label for="end-date">End date</label>
+          <input type="date" id="end-date">
+        </div>
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country">
+            <option value="us" selected>United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
+          </select>
+        </div>
+        <button class="btn" id="calc-btn" type="submit">Calculate</button>
+      </form>
+      <div class="result" id="result" style="display:none;">
+        <div class="result-date" id="result-date"></div>
+        <div class="result-meta" id="result-meta"></div>
+      </div>
+    </div>
+
+    <h2>How this calculator works</h2>
+    <p>It counts every weekday (Monday through Friday) between your two chosen dates that is not a public holiday in the selected country. The count includes the start date if it is a business day, and excludes the end date.</p>
+
+    <h2>Common use cases</h2>
+    <ul class="clean">
+      <li><strong>Project planning:</strong> how many working days do you have between now and a deadline?</li>
+      <li><strong>Payroll:</strong> count business days in a pay period.</li>
+      <li><strong>Leave tracking:</strong> how many working days did you take off?</li>
+      <li><strong>Contract billing:</strong> days worked between invoice dates.</li>
+      <li><strong>Shipping lead time:</strong> business days between order and delivery dates.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <div class="related">
+      <a href="/">Add business days to a date</a>
+      <a href="/3-business-days-from-today">3 business days from today</a>
+      <a href="/5-business-days-from-today">5 business days from today</a>
+      <a href="/10-business-days-from-today">10 business days from today</a>
+      <a href="/30-business-days-from-today">30 business days from today</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Business days between two dates &mdash; excludes weekends and public holidays.
+      <a href="/">Calculator</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var weekLater = new Date(today); weekLater.setDate(weekLater.getDate() + 7);
+      document.getElementById("start-date").value = BizDays.toISODate(today);
+      document.getElementById("end-date").value = BizDays.toISODate(weekLater);
+
+      function run() {
+        var startStr = document.getElementById("start-date").value;
+        var endStr = document.getElementById("end-date").value;
+        var country = document.getElementById("country").value;
+        var start = new Date(startStr + "T00:00:00");
+        var end = new Date(endStr + "T00:00:00");
+
+        if (end <= start) {
+          document.getElementById("result").style.display = "block";
+          document.getElementById("result-date").textContent = "0 business days";
+          document.getElementById("result-meta").textContent = "End date must be after start date.";
+          return;
+        }
+
+        var count = BizDays.businessDaysBetween(start, end, country);
+        var box = document.getElementById("result");
+        box.style.display = "block";
+        document.getElementById("result-date").textContent = count + " business day" + (count === 1 ? "" : "s");
+        var calendarDays = Math.round((end - start) / 86400000);
+        var weekends = Math.floor(calendarDays / 7) * 2;
+        var countryNames = { us: "US", uk: "UK", ca: "Canada", au: "Australia" };
+        document.getElementById("result-meta").textContent =
+          "From " + BizDays.formatDate(start) + " to " + BizDays.formatDate(end) +
+          " (" + calendarDays + " calendar days) using " + countryNames[country] + " holidays.";
+      }
+
+      document.getElementById("calc-btn").addEventListener("click", run);
+      document.getElementById("calc-form").addEventListener("submit", function (e) {
+        e.preventDefault(); run();
+      });
+      run();
+    })();
+  </script>
+</body>
+</html>
